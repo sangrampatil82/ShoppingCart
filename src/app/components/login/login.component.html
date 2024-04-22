@@ -8,9 +8,9 @@
                     class="w-full"  
                     name="email" placeholder="Enter your email"
                     />               
-                    <small *ngIf="email.invalid && (email.dirty  || email.touched)" class="block p-error">
+                    <small *ngIf="email.invalid && (email.dirty  && email.touched)" class="block p-error">
                         <div *ngIf="email.errors?.['required']">Email Id is required</div>
-                        <div *ngIf="email.value !== '' && email.invalid">Email Id is invalid</div>
+                        <div *ngIf="email.errors?.['email']">Email Id is invalid</div>
                     </small>           
                  </div> 
                 
@@ -19,17 +19,14 @@
                     <input type="password" 
                     pInputText   
                     class="w-full" 
-                    name="password" id="password" placeholder="Enter password"/>
-                    <small *ngIf="password.invalid && (password.dirty  || password.touched)" class="block p-error">
-                        <div *ngIf="password.errors?.['required']">Password is required</div>
-                    </small> 
+                    name="password" formControlName="password" id="password" placeholder="Enter password"/>
+                    <small *ngIf="password.invalid && (password.dirty  && password.touched)" class="block p-error">
+                        <div *ngIf="password.errors?.['required']">Password is required</div> 
+                    </small>
                  </div> 
-                  
                  
-                 <p-button type="submit" label="Submit"></p-button> 
+              <button type="submit" class="btn btn-primary" label="Submit" [disabled] = "loginForm.invalid">Submit</button> 
                  
-                <!-- <button type="submit" label="Submit" disabled = "loginForm.invalid">Submit</button> -->
-                 <!-- styleClass="w-full" -->
             </p-card>
         </form>
     </div>

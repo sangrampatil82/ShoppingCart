@@ -5,3 +5,16 @@ body {
     height: 100%;
     margin: 0;
 }
+
+.ngx-color {
+    &.p-card {
+      border-radius: 1rem;
+      overflow: hidden;
+    }  
+     
+    .p-card-body {
+      padding: 2rem !important;
+      background: #b5f0fa;
+      color: #fff;
+    }
+  }
