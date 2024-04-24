@@ -1,0 +1,90 @@
+[
+    {
+        "id": "1",
+        "name": "Electronics"
+    },
+    {
+        "id": "2",
+        "name": "Grocery"
+    },
+    {
+        "id": "3",
+        "name": "Fashion"
+    },
+    {
+        "id": "4",
+        "name": "Toys"
+    },
+    {
+        "id": "5",
+        "name": "Travel"
+    },
+    {
+        "id": "6",
+        "name": "Ecart Pay"
+    },
+    {
+        "id": "7",
+        "name": "Insurance"
+    },
+    {
+        "id": "8",
+        "name": "Bill Pay"
+    },
+    {
+        "id": "9",
+        "name": "Credit Card"
+    },
+    {
+        "id": "10",
+        "name": "Elearning"
+    },
+    {
+        "id": "11",
+        "name": "Ebooks"
+    },
+    {
+        "id": "12",
+        "name": "Music"
+    },
+    {
+        "id": "13",
+        "name": "Medicine"
+    },
+    {
+        "id": "14",
+        "name": "Hospital"
+    },
+    {
+        "id": "15",
+        "name": "Hospital"
+    },
+    {
+        "id": "16",
+        "name": "Auto"
+    },
+    {
+        "id": "17",
+        "name": "University"
+    },
+    {
+        "id": "18",
+        "name": "Real Estate"
+    },
+    {
+        "id": "19",
+        "name": "Games"
+    },
+    {
+        "id": "20",
+        "name": "Hardwares"
+    },
+    {
+        "id": "21",
+        "name": "Softwares"
+    },
+    {
+        "id": "22",
+        "name": "Health"
+    }
+]

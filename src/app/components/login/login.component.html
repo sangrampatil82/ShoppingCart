@@ -3,14 +3,13 @@
         <form [formGroup] = "loginForm" (ngSubmit)="onSubmit()">
             <p-card header="Login" [style]="{width:'350px'}">
                  <div class="field">
-                    <label for="email">Email</label>
+                    <label for="email">Login Id</label>
                     <input type="text" pInputText name="email" formControlName="email"               
                     class="w-full"  
-                    name="email" placeholder="Enter your email"
+                    name="email"
                     />               
                     <small *ngIf="email.invalid && (email.dirty  && email.touched)" class="block p-error">
-                        <div *ngIf="email.errors?.['required']">Email Id is required</div>
-                        <div *ngIf="email.errors?.['email']">Email Id is invalid</div>
+                        <div *ngIf="email.errors?.['required']">User Id is required</div>
                     </small>           
                  </div> 
                 
@@ -19,7 +18,7 @@
                     <input type="password" 
                     pInputText   
                     class="w-full" 
-                    name="password" formControlName="password" id="password" placeholder="Enter password"/>
+                    name="password" formControlName="password" id="password"/>
                     <small *ngIf="password.invalid && (password.dirty  && password.touched)" class="block p-error">
                         <div *ngIf="password.errors?.['required']">Password is required</div> 
                     </small>
@@ -30,4 +29,5 @@
             </p-card>
         </form>
     </div>
+    <p-toast></p-toast>
 </div>

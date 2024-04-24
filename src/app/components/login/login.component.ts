@@ -12,16 +12,17 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LoadingService } from '../../services/loading.service';
 import { UserService } from '../../services/auth.service';
-
-
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CardModule,InputTextModule,ButtonModule,CommonModule,ReactiveFormsModule,
-    HeaderComponent
-  ,SidebarComponent,FooterComponent],
+  imports: [CardModule,InputTextModule,ButtonModule,
+    CommonModule,ReactiveFormsModule,ToastModule,
+    HeaderComponent,SidebarComponent,FooterComponent],
+  providers: [MessageService],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
    User$: Observable<User[]> = new Observable<User[]>()
@@ -30,8 +31,11 @@ export class LoginComponent {
     password: ['',[Validators.required]]
   })
 
-  constructor(private fb:FormBuilder, private userService:UserService,
-    private router:Router, private loadingService:LoadingService) { } 
+  constructor(private fb:FormBuilder,
+    private userService:UserService,
+    private router:Router,
+    private loadingService:LoadingService,
+    private messageService:MessageService) { } 
 
   get email() {
     return this.loginForm.controls['email'];
@@ -50,18 +54,25 @@ export class LoginComponent {
       .subscribe({
         next: (user) => {
           if(user.token){
-            localStorage.setItem('auth_token', user.token); 
+            localStorage.setItem('auth_token', user.token);
+            if(userId)
+            localStorage.setItem('userName', userId);
             this.loadingService.hideProgressSpinner();
             this.router.navigate(["/dashboard"])
           }
         },
         error: (error) => {
             this.loadingService.hideProgressSpinner();
+            this.showError(error);
         }
       }
       )
     }
       
+  }
+
+  showError(msg:string){
+    this.messageService.add({severity: 'error',summary:'Error Message', detail:msg})
   }
 
 }

@@ -1,0 +1,53 @@
+@import "primeicons/primeicons.css";
+
+@media screen and (max-width: 350px) {
+  .vertical-menu a {
+    font-size:x-small;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .vertical-menu a {
+    font-size:medium;
+  }
+}
+
+.vertical-menu {
+  width: 100%; /* Set a width if you like */
+}
+
+.vertical-menu a {
+  background-color: black; /* Grey background color */
+  color: #eee; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */  
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #04AA6D; /* Add a green color to the "active/current" link */
+  color: white;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.ngx-color {
+    &.p-card {
+      border-radius: 1rem;
+      overflow: hidden;
+    }  
+     
+    .p-card-body {
+      padding: 2rem !important;
+      background: #b5f0fa;
+      color: #fff;
+    }
+  }

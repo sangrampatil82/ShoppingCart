@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { LoadingService } from './services/loading.service';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common'; 
+
 
 
 @Component({
@@ -10,7 +11,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet,RouterLink,ProgressSpinnerModule,AsyncPipe,CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'ShoppingCart';

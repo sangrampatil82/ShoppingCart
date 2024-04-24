@@ -19,10 +19,10 @@ export const globalInterceptor: HttpInterceptorFn = (req, next) => {
       // todo: log?
 
       if (error.status != 200) {
-          loadingService.hideProgressSpinner(); 
+          loadingService.hideProgressSpinner();  
       }  
-
       return throwError(() => new Error('Unauthorized Exception'));
+      
   })
   );
 
