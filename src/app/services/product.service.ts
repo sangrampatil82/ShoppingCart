@@ -11,7 +11,7 @@ import { Trends } from '../interfaces/trends';
   providedIn: 'root'
 })
 export class ProductService {
-
+  
   constructor(private http: HttpClient,private loadingService:LoadingService) { }
 
   getAllProducts(): Observable<ProductObject>{

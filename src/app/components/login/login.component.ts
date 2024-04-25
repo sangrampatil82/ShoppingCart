@@ -35,7 +35,11 @@ export class LoginComponent {
     private userService:UserService,
     private router:Router,
     private loadingService:LoadingService,
-    private messageService:MessageService) { } 
+    private messageService:MessageService) { 
+      localStorage.removeItem('auth_token'); 
+      localStorage.removeItem('totalProducts');
+      localStorage.removeItem('selectedProducts');
+    } 
 
   get email() {
     return this.loginForm.controls['email'];

@@ -4,10 +4,14 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active" style="color:white;padding-right: 200px;">
-            <div>Welcome !</div>
-            <div>{{userName}}</div>
+      <ul class="navbar-nav ml-auto" style="margin-right: 35px;">
+        <li class="logoPosition">
+          <a>
+            <img src="../../../assets/images/plogo.png"> 
+          </a>
+        </li>
+        <li class="nav-item active welcomeTxt">
+          Welcome ! {{userName}}
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">Home</a>
@@ -23,6 +27,12 @@
         </li>          
         <li class="nav-item">
           <a class="nav-link cursorP" (click)="redirectToLogin()">Logout</a>
+        </li>
+        <li><a  [routerLink]="['/cart']" (click)="onCartClick()">
+          <img src="../../../assets/images/cart.png" style="width: 50px;height: 50px;">
+          <div class="cartTotal">{{cartService.totalProducts}}</div>
+          
+        </a>
         </li>
       </ul>       
     </div>

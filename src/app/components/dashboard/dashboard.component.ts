@@ -5,7 +5,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { CardModule } from 'primeng/card';
 import { ProductService } from '../../services/product.service'; 
 import { Observable, debounceTime, distinctUntilChanged, filter, fromEvent, map,mergeMap,of } from 'rxjs';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule, DecimalPipe } from '@angular/common';
 import { LoadingService } from '../../services/loading.service';
 import { ToastModule } from 'primeng/toast'; 
 import { MessageService } from 'primeng/api'; 
@@ -16,33 +16,38 @@ import { FormsModule } from '@angular/forms';
 import { Category } from '../../interfaces/category';
 import {InputTextModule} from 'primeng/inputtext';
 import { Trends } from '../../interfaces/trends';
-
+import { ButtonModule } from 'primeng/button';
+import { CartService } from '../../services/cart.service'; 
+import { Product } from '../../interfaces/product';
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent,SidebarComponent,ToastModule,
+  imports: [HeaderComponent,SidebarComponent,ToastModule,ButtonModule,
     FooterComponent,CardModule,AsyncPipe,CommonModule,FormsModule,
-    DropdownModule,RouterOutlet,RouterLink,InputTextModule],
+    DropdownModule,RouterOutlet,RouterLink,InputTextModule,DecimalPipe],
     providers: [MessageService],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
    
-   searchInputStr:string="";
-   productToSearch:string = "";
-   selectedCategory:string = "";
-
+  public searchInputStr:string="";
+  public productToSearch:string = "";
+  public selectedCategory:string = "";
+  public totalAddedProducts:number = 0;
+  
    @ViewChildren('searchInput') querySearchInput:ElementRef[];
 
    productObj$:Observable<ProductObject> = new Observable<ProductObject>();
    Categories$:Observable<Category[]> = new Observable<Category[]>();
    Trends$:Observable<Trends[]> = new Observable<Trends[]>();
-   categoryArr: Category[] = [{name: 'Select Category',code: 0}];
+   categoryArr: Category[] = [{name: 'Select Category',code: -1}];
 
-  constructor(private productService:ProductService,private loadingService:LoadingService){    
+  constructor(private productService:ProductService,
+    public loadingService:LoadingService,
+    public cartService:CartService){    
      
   }
 
@@ -58,6 +63,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           }
           this.categoryArr.push(obj);
         })
+        console.log(this.categoryArr)
         return this.categoryArr
       })       
     );
@@ -87,8 +93,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   onCategoryChanged(event:DropdownChangeEvent){
     this.loadingService.showProgressSpinner();
     this.searchInputStr = "";
-    this.productObj$ = this.productService.getProductByCategory(event.value.name);
+    if(event.value.code > 0)
+      this.productObj$ = this.productService.getProductByCategory(event.value.name);
+    else
+      this.productObj$ = this.productService.getAllProducts();
   }
 
- 
+  addToCart(product:Product){
+    this.totalAddedProducts++;
+    this.cartService.totalProducts++; 
+    this.cartService.addedProducts.push(product);
+    /* this.cartService.countChanged.next(this.cartService.totalProducts);
+    this.cartService.count = this.totalAddedProducts; */
+    //localStorage.setItem("totalProducts",this.totalAddedProducts.toString());
+    //localStorage.setItem("selectedProducts",JSON.stringify(this.cartService.addedProducts));   
+    
+  }
+
 }

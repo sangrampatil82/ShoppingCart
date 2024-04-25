@@ -1,3 +1,30 @@
 .cursorP{
     cursor: pointer;
 }
+
+.cart{
+width: 50px;
+height: 50px;
+background-image: url('../../../assets/images/cart.png'); 
+}
+
+.cartTotal{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-top: -61px;
+    margin-left: 22px;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #cb1836e3;
+}
+
+.logoPosition{
+    padding-right: 265px;
+}
+
+.welcomeTxt{
+    color: white;
+    padding-right: 120px;
+    margin-top: 10px;
+}
