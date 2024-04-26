@@ -1,8 +1,17 @@
 .dashboard{
-    padding-top: 50px;
+    padding-top: 50px; 
 }
 
-.searchBar{
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -49.5vw;
+    margin-right: -50vw;
+}
+
+ .searchBar{
     width: 100%;
     height: 55px;
     padding-top: 10px; 
@@ -49,9 +58,8 @@
     margin-right: 35px;
 }
 
-.categoryDropdown{
-    display: inline-block;
-    margin-left: 25px;
+.filterBox{
+     margin-top: 15px;
 }
 
 .searchInput{

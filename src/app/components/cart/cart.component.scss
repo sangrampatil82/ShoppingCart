@@ -6,6 +6,15 @@
     margin-top: 25px !important;
 }
 
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -49.5vw;
+    margin-right: -50vw;
+}
+
 
 .cardsContainer{
     height: 100%;  
