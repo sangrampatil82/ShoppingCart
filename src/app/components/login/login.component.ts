@@ -60,7 +60,7 @@ export class LoginComponent {
           if(user.token){
             localStorage.setItem('auth_token', user.token);
             if(userId)
-            localStorage.setItem('userName', userId);
+            localStorage.setItem('userName', userId); 
             this.loadingService.hideProgressSpinner();
             this.router.navigate(["/dashboard"])
           }

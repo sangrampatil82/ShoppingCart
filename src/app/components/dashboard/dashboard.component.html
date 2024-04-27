@@ -4,9 +4,7 @@
     <div class="col-1" style="width:20%;height:800px;background: silver; min-height: calc(100vh - 98px);
     height:auto;
     ">
-       <div style="width:20%;height:800px;background: #545555; min-height: calc(100vh - 98px);
-       height:auto;"> </div>
-       <div class="vertical-menu">
+      <div class="vertical-menu">
         <a href="#" *ngFor="let trend of Trends$ | async">{{trend.name}}</a>
       </div>
   </div>
@@ -38,8 +36,9 @@
                     <h5>Rs. {{(product.price - (product.price * product.discountPercentage)/100) * 83.37 | number:'1.0-0'}}</h5>
                     <div><h6>MRP - <s>{{product.price * 83.37 | number:'1.0-0'}}</s></h6></div>
                     <div><h6>Rating - {{product.rating}}</h6></div>
-                    <button class="btn btn-primary" (click)="addToCart(product)">Add to cart</button>
+                    <div><button class="btn btn-primary" (click)="addToCart(product)">Add</button></div>
                 </div>
+                
                 <div class="m-0 "> </div>
                 
               </div>  

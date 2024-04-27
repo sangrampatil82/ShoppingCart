@@ -18,7 +18,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import { Trends } from '../../interfaces/trends';
 import { ButtonModule } from 'primeng/button';
 import { CartService } from '../../services/cart.service'; 
-import { Product } from '../../interfaces/product';
+import { Product } from '../../interfaces/product'; 
 
 
 @Component({
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadingService.showProgressSpinner();
-    this.productObj$ = this.productService.getAllProducts();
+    this.productObj$ = this.productService.getAllProducts().pipe();
     this.Categories$ = this.productService.getCategories().pipe(
       map((categories) => {
         categories.map((category,index) => {
@@ -101,13 +101,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   addToCart(product:Product){
     this.totalAddedProducts++;
-    this.cartService.totalProducts++; 
     this.cartService.addedProducts.push(product);
-    /* this.cartService.countChanged.next(this.cartService.totalProducts);
-    this.cartService.count = this.totalAddedProducts; */
-    //localStorage.setItem("totalProducts",this.totalAddedProducts.toString());
-    //localStorage.setItem("selectedProducts",JSON.stringify(this.cartService.addedProducts));   
-    
+    this.cartService.cartCountChanged.next(this.totalAddedProducts);
   }
 
 }

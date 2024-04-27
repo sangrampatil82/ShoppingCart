@@ -22,15 +22,18 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Services</a>
         </li> 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="role == 'admin'">
+          <a class="nav-link" [routerLink]="['/admin']">Admin</a>
+        </li>
+        <li class="nav-item" *ngIf="role != 'admin'">
           <a class="nav-link" href="#">Products</a>
-        </li>          
+        </li>           
         <li class="nav-item">
           <a class="nav-link cursorP" (click)="redirectToLogin()">Logout</a>
         </li>
         <li><a  [routerLink]="['/cart']" (click)="onCartClick()">
           <img src="../../../assets/images/cart.png" style="width: 50px;height: 50px;">
-          <div class="cartTotal">{{cartService.totalProducts}}</div>
+          <div class="cartTotal">{{cartService.addedProducts.length}}</div>
           
         </a>
         </li>

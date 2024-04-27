@@ -11,7 +11,8 @@ export interface ProductObject {
             brand: string,
             category: string,
             thumbnail: string,
-            images: string[]
+            images: string[],
+            quantity?:number
             }
     ]
 }
