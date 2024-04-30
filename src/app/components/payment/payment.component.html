@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="container cart">
+  <div class="row mt-5 full-width">
+    <div class="col-1" style="width:20%;height:800px;background: silver; min-height: calc(100vh - 98px);
+    height:auto;
+    ">
+       <div class="vertical-menu">
+        <a href="#" *ngFor="let trend of Trends$ | async">{{trend.name}}</a>
+      </div>
+  </div>
+    <div class="col-6" style="width:60%;">        
+      <div class="container cardsContainer">
+         <div class="cardsContainer">
+          <div *ngIf="!orderPlaced">
+            <p-card> 
+              <div>                 
+                  <div class="col-8">
+                       <h5>Please select your mode of payment</h5>
+                       <p></p>
+                       <div class="flex flex-column gap-3">
+                        <div *ngFor="let payment of payments" class="radioW">
+                            <p-radioButton [inputId]="payment.id" name="address" [value]="payment.id" [(ngModel)]="selectedPaymentType"></p-radioButton>
+                            <label [for]="payment.id" class="ml-2">{{ payment.type }}</label>              
+                        </div>
+                        <div>
+                            <input type="text" pInputText style="width: 350px;"  
+                            name="gpayid"  id="gpayid" [(ngModel)]="paymentAddress" placeholder="Please enter you payment id"/>
+                        </div>
+                        <div><button class="btn btn-primary backButton" (click)="placeOrder()">Proceed for Payement</button></div>
+                    </div>
+                  </div>
+                  <div class="m-0 "> </div>
+                  
+                </div>  
+            </p-card>
+
+            <!-- <div><button *ngIf="!orderPlaced" class="btn btn-primary backButton" (click)="placeOrder()">Proceed for Payement</button></div> -->
+          </div>
+          <div *ngIf="orderPlaced">
+            <h4>Your oder placed successfully !</h4>
+            <h>It will get delivered within next 4 business days</h>
+          </div>
+         </div>
+         
+         <div style="width: 100%;height: 56px;"></div>
+         
+    </div>
+  </div>
+  
+  <div class="col-5" style="width:18%;">
+    <div class="divDullW"><button class="btn btn-primary backButton" (click)="onBackClick()">Back to Dashboard</button></div>
+     
+  </div>
+</div>
+<app-footer></app-footer>

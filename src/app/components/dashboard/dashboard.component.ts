@@ -84,7 +84,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           distinctUntilChanged()
         )
         .subscribe((text: string) => {
-          this.productObj$ = this.productService.getSingleProductOnSearch(text);
+          this.loadingService.showProgressSpinner();
+          this.productObj$ = this.productService.getSingleProductOnSearch(text).pipe(
+            map((product:ProductObject) => {
+              if(product["products"].length <=0){
+                  
+              }
+              return product;
+            })
+          );
         });
     });
   }

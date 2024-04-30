@@ -43,9 +43,7 @@ export class CheckoutComponent implements OnInit {
       {
         id: 3,
         address: 'Thorsten-Busse-Platz 4,Friedrichsdorf,Baden-Wurttemberg,73556'
-      }
-
-      
+      }      
     ]
     this.Trends$ = this.productService.getAllTrends();
   }
@@ -59,10 +57,8 @@ export class CheckoutComponent implements OnInit {
     
   }
 
-  placeOrder(){
-    this.orderPlaced = true;
-    this.cartService.addedProducts = [];
-    this.cartService.cartCountChanged.next(0);
+  placeOrder(){    
+    this.router.navigate(['/payment'])
   }
 
 }
