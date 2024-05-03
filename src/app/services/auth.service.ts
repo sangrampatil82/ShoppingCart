@@ -25,11 +25,7 @@ export class UserService {
     const authenticationToken:string | null = localStorage.getItem('auth_token'); // get token from local storage
     if(authenticationToken){
       const payload = atob(authenticationToken.split('.')[1]);
-      console.log("payload")
-      console.log(payload)
       const parsedPayload = JSON.parse(payload);
-      console.log("parsedPayload");
-      console.log(parsedPayload)
       return  (parsedPayload.exp > Date.now() / 1000)? true: false // check if token is expired
     }
     return false;    

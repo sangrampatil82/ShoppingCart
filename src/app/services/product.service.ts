@@ -47,7 +47,11 @@ export class ProductService {
 
   getAllTrends():Observable<Trends[]>{
     return this.http.get<Trends[]>("./assets/data/Trends.json");
- }
+  }
+
+  addProduct(product:Product){
+    return this.http.post("https://dummyjson.com/products/add",product);
+  }
    
    
 }

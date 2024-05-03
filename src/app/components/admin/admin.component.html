@@ -2,17 +2,81 @@
 <div class="container cart">
   <div class="row mt-5 full-width">
     <div class="col-1" style="width:20%;height:800px;background: silver; min-height: calc(100vh - 98px);
-    height:auto;
-    ">
+    height:auto;">
        <div class="vertical-menu">
         <a href="#" *ngFor="let trend of Trends$ | async">{{trend.name}}</a>
       </div>
   </div>
     <div class="col-6" style="width:60%;">
-      <div class="container cardsContainer">
-         
-         <div style="width: 100%;height: 56px;"></div>
+      <div class="flex justify-content-center align-items-center">
+        <form [formGroup] = "adminForm">
+            <p-card header="Add Product" [style]="{width:'350px'}">
+                 <div class="field">
+                    <label for="title">Product Name</label>
+                    <input type="text" pInputText name="title" formControlName="title"               
+                    class="w-full"
+                    />               
+                    <small *ngIf="title.invalid && (title.dirty  && title.touched)" class="block p-error">
+                        <div *ngIf="title.errors?.['required']">Product name is required</div>
+                    </small>           
+                 </div> 
+                
+                 <div class="field">
+                    <label for="description">Product Description</label>
+                    <textarea rows="2" cols="30" pInputTextarea 
+                    name="description" formControlName="description"></textarea>                  
+                    <small *ngIf="description.invalid && (description.dirty  && description.touched)" class="block p-error">
+                        <div *ngIf="description.errors?.['required']">Product description is required</div> 
+                    </small>
+                 </div>
+                 <div class="field">
+                  <label for="productCategory">Product Category</label>
+                  <p-dropdown  [style]="{'minWidth':'60%'}"  formControlName="productCategory" [(ngModel)]="selectedCategory" name="productCategory"  *ngIf="Categories$ | async as categories" [options]="categories"  optionLabel="name"></p-dropdown>              
+                         
+                </div>
+                <div class="field">
+                  <label for="price">Product Price (Rs.)</label>
+                  <input type="number" pInputText name="price" formControlName="price"               
+                  class="w-full"
+                  />               
+                  <small *ngIf="price.invalid && (price.dirty  && price.touched)" class="block p-error">
+                    <div *ngIf="price.errors?.['required']">Price is required</div> 
+                  </small>          
+               </div>
+               <div class="field">
+                <label for="discountPercentage">Discount (%)</label>
+                <input type="number" pInputText name="discountPercentage" formControlName="discountPercentage"               
+                class="w-full"
+                />               
+                <small *ngIf="discountPercentage.invalid && (discountPercentage.dirty  && discountPercentage.touched)" class="block p-error">
+                  <div *ngIf="discountPercentage.errors?.['required']">Discount is required</div> 
+                </small>         
+              </div>
+              <div class="field">
+                <label for="rating">Rating</label>
+                <input type="number" pInputText name="rating" min="1" max="5" formControlName="rating"               
+                class="w-full"
+                />               
+                <small *ngIf="rating.invalid && (rating.dirty  && rating.touched)" class="block p-error">
+                  <div *ngIf="rating.errors?.['required']">Rating is required</div> 
+                </small>        
+              </div> 
+              <div class="field imgeUpload">
+                <p-fileUpload mode="basic"  name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Upload Image"></p-fileUpload>
+                <span>{{imageName}}</span>
+              </div> 
+               
+              <button type="submit" class="btn btn-primary" [disabled]="adminForm.invalid"  label="Submit" (click)="onAddProduct()">Submit</button> 
+                 
+            </p-card>
+        </form>
+    </div>
+      
+    </div>
+    <div class="col-4" style="width:10%;">
+      <div class="divDullW"><button class="btn btn-primary backButton" (click)="onBackClick()">Back to Dashboard</button></div>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
+<p-toast></p-toast>

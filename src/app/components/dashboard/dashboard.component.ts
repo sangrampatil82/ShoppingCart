@@ -101,7 +101,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   onCategoryChanged(event:DropdownChangeEvent){
     this.loadingService.showProgressSpinner();
     this.searchInputStr = "";
-    if(event.value.code > 0)
+    if(event.value.code >=0)
       this.productObj$ = this.productService.getProductByCategory(event.value.name);
     else
       this.productObj$ = this.productService.getAllProducts();

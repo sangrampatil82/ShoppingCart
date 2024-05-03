@@ -59,6 +59,7 @@ export class LoginComponent {
         next: (user) => {
           if(user.token){
             localStorage.setItem('auth_token', user.token);
+            localStorage.setItem('role', 'admin');
             if(userId)
             localStorage.setItem('userName', userId); 
             this.loadingService.hideProgressSpinner();
