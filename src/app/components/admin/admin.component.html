@@ -8,7 +8,7 @@
       </div>
   </div>
     <div class="col-6" style="width:60%;">
-      <div class="flex justify-content-center align-items-center">
+      <div *ngIf="(role == 'admin')" class="flex justify-content-center align-items-center">
         <form [formGroup] = "adminForm">
             <p-card header="Add Product" [style]="{width:'350px'}">
                  <div class="field">
@@ -70,7 +70,10 @@
                  
             </p-card>
         </form>
-    </div>
+      </div>
+      <div *ngIf="(role != 'admin')">
+        <h4 class="showRed">You dont have permissions to view this page.</h4>
+      </div>
       
     </div>
     <div class="col-4" style="width:10%;">

@@ -27,6 +27,7 @@ import { Router } from '@angular/router';
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent implements OnInit {
+  role:string | null = localStorage.getItem('role');
   imageName:string = "";
   adminForm = this.fb.group({
     title: ['',[Validators.required]],
@@ -45,7 +46,7 @@ export class AdminComponent implements OnInit {
   categoryArr: Category[] = [{name: 'Select Category',code: -1}];
 
   constructor(private router:Router,private fb:FormBuilder,private messageService:MessageService,private productService:ProductService){
- 
+    
   }
 
   get title() {
