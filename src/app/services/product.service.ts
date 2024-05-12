@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, mergeMap, switchMap } from 'rxjs';
+import { Observable, concatMap, forkJoin, map, mergeMap, of, switchMap, take } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { HttpClient } from '@angular/common/http'; 
 import { LoadingService } from './loading.service';
@@ -15,12 +15,20 @@ export class ProductService {
   constructor(private http: HttpClient,private loadingService:LoadingService) { }
 
   getAllProducts(): Observable<ProductObject>{
+    let updatedProducts = [];
       return this.http.get<ProductObject>("https://dummyjson.com/products").pipe(
-        map((product:ProductObject) =>{
-         this.loadingService.hideProgressSpinner();
-            return product;
-        })
+        switchMap((originalProducts) => {
+          return this.http.get<ProductObject>("./assets/data/Products.json").pipe(
+            map((newProducts:any) => {
+              updatedProducts = [...originalProducts.products,...newProducts.products];
+               newProducts.products = updatedProducts;
+               this.loadingService.hideProgressSpinner();
+               return newProducts;               
+            })
+          );
+        }), 
       )
+       
   }
 
   getProductByCategory(category:string): Observable<ProductObject>{

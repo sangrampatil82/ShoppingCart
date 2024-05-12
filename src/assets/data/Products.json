@@ -1,7 +1,8 @@
-[
+{
+	"products": [
   {
       "id": 101,
-      "title": "Acer Aspire Lite AMD Ryzen 5 5500U Premium Thin and Light Laptop (15.6 inch)"
+      "title": "Acer Aspire Lite AMD Ryzen 5 5500U Premium Thin and Light Laptop (15.6 inch)",
       "description": "Processor : AMD Ryzen 5 5500U Hexa-Core Mobile Processor with AMD Radeon Graphics.Maximum Power Supply Wattage 45 W",
       "price": 639,
       "discountPercentage": 42,
@@ -46,6 +47,6 @@
       "brand": "OnePlus",
       "category": "Smartphone",
       "thumbnail": "./assets/images/smartphones/Oneplus-nord-3.jpg"       
-    },
-	
+    }	
 ]
+}
