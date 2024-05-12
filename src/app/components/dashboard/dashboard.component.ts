@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    window.scroll(0,0);
     this.loadingService.showProgressSpinner();
     this.productObj$ = this.productService.getAllProducts().pipe();
     this.Categories$ = this.productService.getCategories().pipe(

@@ -16,6 +16,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
 import { Router } from '@angular/router';
+import {environment} from '../../config/environment';
+ 
 
 @Component({
   selector: 'app-admin',
@@ -32,10 +34,12 @@ export class AdminComponent implements OnInit {
   adminForm = this.fb.group({
     title: ['',[Validators.required]],
     description: ['',[Validators.required]],
-    productCategory : ['',[Validators.required]],
     price : [0,[Validators.required]],
     discountPercentage : [0,[Validators.required]],
-    rating : [0,[Validators.required]]
+    rating : [0,[Validators.required]],
+    stock : [0,[Validators.required]],
+    brand : ['',[Validators.required]],    
+    category : ['',[Validators.required]]
   });
   selectedCategory:{
     id:number,
@@ -57,8 +61,8 @@ export class AdminComponent implements OnInit {
     return this.adminForm.controls['description'];
   }
 
-  get productCategory() {
-    return this.adminForm.controls['productCategory'];
+  get category() {
+    return this.adminForm.controls['category'];
   }
   
   get price() {
@@ -71,6 +75,14 @@ export class AdminComponent implements OnInit {
 
   get rating() {
     return this.adminForm.controls['rating'];
+  }
+
+  get stock() {
+    return this.adminForm.controls['stock'];
+  }
+
+  get brand() {
+    return this.adminForm.controls['brand'];
   }
 
 
@@ -105,7 +117,15 @@ export class AdminComponent implements OnInit {
   }
 
   onBasicUploadAuto(event:any){
-    this.imageName = event.files[0].name;
+     
+    console.log(event)
+    this.imageName = "../../../assets/images/laptops/"+ event.files[0].name;
+  }
+
+  onCategoryChange(event:any){
+    console.log("category")
+    console.log(event)
+    this.selectedCategory.name = event.value     
   }
 
   showError(msg:string){

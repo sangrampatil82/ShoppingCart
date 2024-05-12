@@ -101,10 +101,22 @@
     padding-top: 10%;
 }
 
-.imgeUpload{
-   margin-left: -53px;
-   transform: scale(0.7);
-   height: 70px;
+.imgeUpload{   
+   display: flex;
+}
+
+.selectFileBtn{
+    transform: scale(0.7);
+    transform-origin: left; 
+    position: fix;
+}
+
+.imagePos{
+    transform: scale(0.7);
+}
+
+.imageLeft{
+    margin-left: 20px;
 }
 
 .showRed{

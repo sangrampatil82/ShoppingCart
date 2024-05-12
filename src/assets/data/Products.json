@@ -1,0 +1,51 @@
+[
+  {
+      "id": 101,
+      "title": "Acer Aspire Lite AMD Ryzen 5 5500U Premium Thin and Light Laptop (15.6 inch)"
+      "description": "Processor : AMD Ryzen 5 5500U Hexa-Core Mobile Processor with AMD Radeon Graphics.Maximum Power Supply Wattage 45 W",
+      "price": 639,
+      "discountPercentage": 42,
+      "rating": 4,
+      "stock": 22,
+      "brand": "Acer",
+      "category": "Laptop",
+      "thumbnail": "./assets/images/laptops/Acer_aspire_lite.jpg"       
+    },
+	{
+      "id": 102,
+      "title": "Apple 2023 MacBook Pro (16-inch)",
+      "description": "SUPERCHARGED BY M3 PRO OR M3 MAX — The Apple M3 Pro chip, with a 12-core CPU and 18-core GPU using hardware-accelerated ray tracing",
+      "price": 4819,
+      "discountPercentage": 0,
+      "rating": 2,
+      "stock": 55,
+      "brand": "Apple",
+      "category": "Laptop",
+      "thumbnail": "./assets/images/laptops/Apple_mackbook_pro_16.jpg"       
+    },
+	{
+      "id": 103,
+      "title": "Apple iPhone 13 (128GB) - Starlight 15 cm (6.1-inch) ",
+      "description": "Advanced dual-camera system with 12MP Wide and Ultra Wide cameras; Photographic Styles, Smart HDR 4, Night mode, 4K Dolby Vision HDR recording",
+      "price": 721,
+      "discountPercentage": 12,
+      "rating": 4.5,
+      "stock": 100,
+      "brand": "Apple",
+      "category": "Smartphone",
+      "thumbnail": "./assets/images/smartphones/Apple-iphone-13.jpg"       
+    },
+	{
+      "id": 104,
+      "title": "OnePlus Nord 3 5G (Misty Green, 8GB RAM, 128GB Storage)",
+      "description": "Camera: 50MP Main Camera with Sony IMX890 (OIS supported), 8MP Ultrawide Camera with Sony IMX355 (FOV: 112 degree) and 2MP Macro lens f/2.4 and a FOV 89°; 16MP Front (Selfie) Camera with EIS supported",
+      "price": 721,
+      "discountPercentage": 12,
+      "rating": 4.5,
+      "stock": 100,
+      "brand": "OnePlus",
+      "category": "Smartphone",
+      "thumbnail": "./assets/images/smartphones/Oneplus-nord-3.jpg"       
+    },
+	
+]

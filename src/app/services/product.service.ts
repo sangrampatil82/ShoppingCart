@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, mergeMap } from 'rxjs';
+import { Observable, map, mergeMap, switchMap } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { HttpClient } from '@angular/common/http'; 
 import { LoadingService } from './loading.service';
