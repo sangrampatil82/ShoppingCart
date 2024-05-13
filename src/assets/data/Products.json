@@ -9,7 +9,7 @@
       "rating": 4,
       "stock": 22,
       "brand": "Acer",
-      "category": "Laptop",
+      "category": "laptops",
       "thumbnail": "./assets/images/laptops/Acer_aspire_lite.jpg"       
     },
 	{
@@ -21,7 +21,7 @@
       "rating": 2,
       "stock": 55,
       "brand": "Apple",
-      "category": "Laptop",
+      "category": "laptops",
       "thumbnail": "./assets/images/laptops/Apple_mackbook_pro_16.jpg"       
     },
 	{
@@ -33,7 +33,7 @@
       "rating": 4.5,
       "stock": 100,
       "brand": "Apple",
-      "category": "Smartphone",
+      "category": "smartphones",
       "thumbnail": "./assets/images/smartphones/Apple-iphone-13.jpg"       
     },
 	{
@@ -45,7 +45,7 @@
       "rating": 4.5,
       "stock": 100,
       "brand": "OnePlus",
-      "category": "Smartphone",
+      "category": "smartphones",
       "thumbnail": "./assets/images/smartphones/Oneplus-nord-3.jpg"       
     }	
 ]

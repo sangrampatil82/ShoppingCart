@@ -32,12 +32,26 @@ export class ProductService {
   }
 
   getProductByCategory(category:string): Observable<ProductObject>{
-    return this.http.get<ProductObject>("https://dummyjson.com/products/category/"+category).pipe(
+    /* return this.http.get<ProductObject>("https://dummyjson.com/products/category/"+category).pipe(
       map((product:ProductObject) =>{
        this.loadingService.hideProgressSpinner();
           return product;
       })
-    )
+    ) */
+    let updatedProducts = [];
+      return this.http.get<ProductObject>("https://dummyjson.com/products/category/"+category).pipe(
+        switchMap((originalProducts) => {
+          return this.http.get<ProductObject>("./assets/data/Products.json").pipe(
+            map((newProducts:any) => {
+              let arr2 = newProducts.products.filter((product:any) => product.category == category)
+              updatedProducts = [...originalProducts.products,...arr2];
+               newProducts.products = updatedProducts;
+               this.loadingService.hideProgressSpinner();
+               return newProducts;               
+            })
+          );
+        }), 
+      )
   }
 
   getSingleProductOnSearch(product:String): Observable<ProductObject>{
