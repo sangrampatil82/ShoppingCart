@@ -32,12 +32,6 @@ export class ProductService {
   }
 
   getProductByCategory(category:string): Observable<ProductObject>{
-    /* return this.http.get<ProductObject>("https://dummyjson.com/products/category/"+category).pipe(
-      map((product:ProductObject) =>{
-       this.loadingService.hideProgressSpinner();
-          return product;
-      })
-    ) */
     let updatedProducts = [];
       return this.http.get<ProductObject>("https://dummyjson.com/products/category/"+category).pipe(
         switchMap((originalProducts) => {

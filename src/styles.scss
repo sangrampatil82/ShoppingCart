@@ -22,10 +22,12 @@
   display: block; /* Make the links appear below each other */
   padding: 12px; /* Add some padding */
   text-decoration: none; /* Remove underline from links */  
+  position: relative;
 }
 
 .vertical-menu a:hover {
   background-color: #ccc; /* Dark grey background on mouse-over */
+  color: black;
 }
 
 .vertical-menu a.active {

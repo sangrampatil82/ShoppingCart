@@ -4,7 +4,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CardModule } from 'primeng/card';
 import { ProductService } from '../../services/product.service'; 
-import { Observable, debounceTime, distinctUntilChanged, filter, fromEvent, map,mergeMap,of } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, filter, fromEvent, map,mergeMap,of, switchMap } from 'rxjs';
 import { AsyncPipe, CommonModule, DecimalPipe } from '@angular/common';
 import { LoadingService } from '../../services/loading.service';
 import { ToastModule } from 'primeng/toast'; 
@@ -19,6 +19,7 @@ import { Trends } from '../../interfaces/trends';
 import { ButtonModule } from 'primeng/button';
 import { CartService } from '../../services/cart.service'; 
 import { Product } from '../../interfaces/product'; 
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(private productService:ProductService,
     public loadingService:LoadingService,
-    public cartService:CartService){    
+    public cartService:CartService,private http: HttpClient){   
      
   }
 
@@ -85,11 +86,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           distinctUntilChanged()
         )
         .subscribe((text: string) => {
+          let updatedProducts:any = [];
           this.loadingService.showProgressSpinner();
           this.productObj$ = this.productService.getSingleProductOnSearch(text).pipe(
-            map((product:ProductObject) => {
-              return product;
-            })
+            switchMap((originalProducts) => {
+              return this.http.get<ProductObject>("./assets/data/Products.json").pipe(
+                map((newProducts:ProductObject) => {
+                  let currentCatgeory = originalProducts.products[0].category;
+                  let arr2 = newProducts.products.filter((product:any) => product.category == currentCatgeory)
+                  updatedProducts = [...originalProducts.products,...arr2];
+                  originalProducts.products = updatedProducts;
+                   this.loadingService.hideProgressSpinner();
+                   return originalProducts;               
+                })
+              );
+            }),
           );
         });
     });

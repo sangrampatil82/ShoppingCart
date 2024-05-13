@@ -3,7 +3,9 @@
   <div class="row mt-5 full-width">
     <div class="col-1" style="width:20%;height:800px;background: silver; min-height: calc(100vh - 98px);
     height:auto;
-    ">
+    ">      
+      <div style="width: 18%; height: 100%; background-color: rgb(84, 85, 85); position: absolute;">
+      </div>
       <div class="vertical-menu">
         <a href="#" *ngFor="let trend of Trends$ | async">{{trend.name}}</a>
       </div>
