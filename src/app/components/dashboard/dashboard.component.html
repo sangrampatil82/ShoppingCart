@@ -28,7 +28,7 @@
          <div class="cardsContainer">
           <p-card header="{{product.title}}" *ngFor="let product of (productObj$ | async)?.products" [style]="{marginTop: '30px'}"> 
             <div class="row mt-5">                 
-                <img alt="img" class="col-4"  [src]="product.thumbnail" />
+                <img alt="img" class="col-4" [ngClass]="{'thumbnail':(product.category == 'Smartphone')}"  [src]="product.thumbnail" />
                 <div class="col-8">
                     <div>
                       {{product.description}}

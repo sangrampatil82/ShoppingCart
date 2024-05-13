@@ -87,10 +87,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         .subscribe((text: string) => {
           this.loadingService.showProgressSpinner();
           this.productObj$ = this.productService.getSingleProductOnSearch(text).pipe(
-            map((product:ProductObject) => {
-              if(product["products"].length <=0){
-                  
-              }
+            map((product:ProductObject) => {             
               return product;
             })
           );
