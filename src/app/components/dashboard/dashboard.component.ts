@@ -199,6 +199,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         });
          
         originalProducts.products = updatedProducts;
+        originalProducts.products.sort((a, b) => {
+          return a.price < b.price ? -1 : 1;
+        });
         return originalProducts;
         })
     );
