@@ -29,8 +29,13 @@
     position: relative;
 }
 
-.searchLabel{
-    //padding-left: 400px;
+ .clearMargin{
+    margin-left: 310px !important;
+ }
+
+.filterDropdown{
+    padding-left: 30px;
+    min-width: 50%;
 }
 
 .cardContainer{
@@ -70,4 +75,32 @@
 .searchInput{
     margin-left: 35px;
 }
+
+.fromRange{
+    padding-top: 5px;
+    width: 100px;
+}
+
+::ng-deep .p-card-content {
+    padding-top: 0px !important;
+}
+
+::ng-deep .p-card .p-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: -2.5rem;
+}
+
+.sliderDiv{
+    width: 500px;
+    display: flex;
+    padding-top: 10px;
+    margin-left: -70px;
+}
+
+.rangePos{
+    width: 75px;
+    margin-left: 10px;
+}
+ 
 

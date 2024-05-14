@@ -15,8 +15,18 @@ export class ProductService {
   constructor(private http: HttpClient,private loadingService:LoadingService) { }
 
   getAllProducts(): Observable<ProductObject>{
+
+    let productObjLocalStr$ = localStorage.getItem('localProductObj');
+      let productObjLocal$:ProductObject;
+      if(productObjLocalStr$){
+        productObjLocal$ = JSON.parse(productObjLocalStr$);
+        
+        console.log("productObjLocal$");
+        console.log(productObjLocal$)
+      }
+
     let updatedProducts = [];
-      return this.http.get<ProductObject>("https://dummyjson.com/products").pipe(
+      /* return this.http.get<ProductObject>("https://dummyjson.com/products").pipe(
         switchMap((originalProducts) => {
           return this.http.get<ProductObject>("./assets/data/Products.json").pipe(
             map((newProducts:any) => {
@@ -27,8 +37,21 @@ export class ProductService {
             })
           );
         }), 
+      ) */
+      
+        
+      return this.http.get<ProductObject>("https://dummyjson.com/products").pipe(
+        switchMap((originalProducts) => {
+          return of(productObjLocal$).pipe(
+            map((newProducts:any) => {
+              updatedProducts = [...originalProducts.products,...newProducts.products];
+               newProducts.products = updatedProducts;
+               this.loadingService.hideProgressSpinner();
+               return newProducts;               
+            })
+          );
+        }), 
       )
-       
   }
 
   getProductByCategory(category:string): Observable<ProductObject>{
@@ -37,7 +60,7 @@ export class ProductService {
         switchMap((originalProducts) => {
           return this.http.get<ProductObject>("./assets/data/Products.json").pipe(
             map((newProducts:any) => {
-              let arr2 = newProducts.products.filter((product:any) => product.category == category)
+              let arr2 = newProducts.products.filter((product:Product) => product.category == category)
               updatedProducts = [...originalProducts.products,...arr2];
                newProducts.products = updatedProducts;
                this.loadingService.hideProgressSpinner();

@@ -4,7 +4,7 @@
     <div class="col-1" style="width:20%;height:800px;background: silver; min-height: calc(100vh - 98px);
     height:auto;
     ">      
-      <div style="width: 18%; height: 100%; background-color: rgb(84, 85, 85); position: absolute;">
+      <div style="width: 18%; height: 99.93%; background-color: rgb(84, 85, 85); position: absolute;">
       </div>
       <div class="vertical-menu">
         <a href="#" *ngFor="let trend of Trends$ | async">{{trend.name}}</a>
@@ -13,18 +13,39 @@
     <div class="col-9" style="width: 80%;">
       <div class="container cardsContainer">
         <div class="row filterBox">
-          <div class="col-sm-5">
+          <div class="col-sm-4">
              <div class="searchCommon ui-fluid">
                 <span class="categoryText">Category</span>
-                <p-dropdown  [style]="{'minWidth':'60%'}"  *ngIf="Categories$ | async as categories" (onChange)="onCategoryChanged($event)" [(ngModel)]="selectedCategory" [options]="categories"  optionLabel="name"></p-dropdown>
+                <p-dropdown  [style]="{'minWidth':'50%'}"  *ngIf="Categories$ | async as categories" (onChange)="onCategoryChanged($event)" [(ngModel)]="selectedCategory" [options]="categories"  optionLabel="name"></p-dropdown>
              </div>
           </div>
-          <div class="col-sm-7">
+          <div class="col-sm-4">
             <div class="searchCommon">
-              <span class="searchLabel">Search</span>
+              <span>Search</span>
               <input class="searchInput" id="searchInput" #searchInput  type="text" pInputText [(ngModel)]="searchInputStr"/>
             </div>              
-          </div>           
+          </div>
+          <div class="col-sm-4">
+              <div class="searchCommon">
+                <span class="searchLabel">Filter By</span>
+                <p-dropdown  class="filterDropdown"  (onChange)="onFilterChanged($event)" [(ngModel)]="selectedFilter" [options]="filterByOptions"  optionLabel="name"></p-dropdown>
+              </div>
+              <div class="sliderDiv">
+                <div>
+                 <div>
+                    <span style="margin-left: -20px;" *ngIf="selectedCode == 2">From</span>
+                    <input class="rangePos" type="text" *ngIf="selectedCode == 2" [(ngModel)]="fromRange" pInputText />
+                    <span class="rangePos" *ngIf="selectedCode == 2">To</span>
+                    <input class="rangePos" type="text" *ngIf="selectedCode == 2" [(ngModel)]="toRange" pInputText />
+                    <button class="rangePos btn btn-warning" *ngIf="selectedCode == 2" style="margin-right: 10px;" (click)="onRangeGo()">Go</button>
+                    <button class="btn btn-warning" [ngClass]="{'clearMargin':(selectedCode < 2 )}" (click)="resetProductsCategories()">clear</button>
+                   
+                  </div>                 
+               </div>
+                                                    
+          </div>
+          
+         </div>                  
         </div>
          
          <div class="cardsContainer">
@@ -35,8 +56,8 @@
                     <div>
                       {{product.description}}
                     </div>
-                    <h5>Rs. {{(product.price - (product.price * product.discountPercentage)/100) * 83.37 | number:'1.0-0'}}</h5>
-                    <div><h6>MRP - <s>{{product.price * 83.37 | number:'1.0-0'}}</s></h6></div>
+                    <h5>$ {{(product.price - (product.price * product.discountPercentage)/100) | number:'1.0-0'}}</h5>
+                    <div><h6>MRP - <s>{{product.price | number:'1.0-0'}}</s></h6></div>
                     <div><h6>Rating - {{product.rating}}</h6></div>
                     <div><button class="btn btn-primary" (click)="addToCart(product)">Add</button></div>
                 </div>

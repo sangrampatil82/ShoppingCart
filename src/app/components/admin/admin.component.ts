@@ -17,6 +17,7 @@ import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
 import { Router } from '@angular/router';
 import {environment} from '../../config/environment';
+import { ProductObject } from '../../interfaces/product-object';
  
 
 @Component({
@@ -30,7 +31,9 @@ import {environment} from '../../config/environment';
 })
 export class AdminComponent implements OnInit {
   role:string | null = localStorage.getItem('role');
+  selectedCategoryString:string;
   imageName:string = "";
+  imagePathFordashboard:string = ""
   adminForm = this.fb.group({
     title: ['',[Validators.required]],
     description: ['',[Validators.required]],
@@ -106,9 +109,31 @@ export class AdminComponent implements OnInit {
   onAddProduct(){
     let newProduct:Product;
     newProduct = this.adminForm.value
-    newProduct.category = this.selectedCategory.name;
-    //newProduct.category = this.selectedCategory.name;
-    const userData = this.adminForm.value;
+    let categoryObject = this.selectedCategory.name 
+    let userData:any;
+    let localProductObj:ProductObject;
+    let localProductObjString = localStorage.getItem('localProductObj');  
+     
+    if(localProductObjString){
+      localProductObj = JSON.parse(localProductObjString);
+      userData = {
+        id: 101,
+        title: this.adminForm.controls['title'].value,
+        description: this.adminForm.controls['description'].value,
+        price: this.adminForm.controls['price'].value,
+        discountPercentage: this.adminForm.controls['discountPercentage'].value,
+        rating: this.adminForm.controls['rating'].value,
+        stock: this.adminForm.controls['stock'].value,
+        brand: this.adminForm.controls['brand'].value,
+        category: this.selectedCategoryString,
+        thumbnail: this.imagePathFordashboard,
+        images: [],
+        total: 10
+      }
+      localProductObj.products.push(userData)
+      localStorage.setItem('localProductObj',JSON.stringify(localProductObj));
+    }
+    
     this.productService.addProduct(newProduct).subscribe((res) => {
       this.adminForm.reset();
       this.imageName = "";
@@ -117,9 +142,11 @@ export class AdminComponent implements OnInit {
   }
 
   onBasicUploadAuto(event:any){
-     
+    const catValue:any = this.adminForm.controls.category.value;
+    this.selectedCategoryString =  catValue.name;
     console.log(event)
-    this.imageName = "../../../assets/images/laptops/"+ event.files[0].name;
+    this.imageName = "../../../assets/images/"+catValue.name+"/"+ event.files[0].name;
+    this.imagePathFordashboard = "./assets/images/"+catValue.name+"/"+ event.files[0].name;
   }
 
   onCategoryChange(event:any){
