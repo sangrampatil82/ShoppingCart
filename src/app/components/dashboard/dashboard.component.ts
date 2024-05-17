@@ -91,6 +91,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.selectedCode = -1;
     this.fromRange = 0;
     this.toRange = 0;
+    this.categoryArr = [{name: 'Select Category',code: -1}];
     this.productObj$ = this.productService.getAllProducts().pipe();
     this.Categories$ = this.productService.getCategories().pipe(
       map((categories) => {

@@ -25,6 +25,13 @@
     height: 30px; 
 }
 
+.leftPanel{
+    width:20%;margin-top: -12px;
+    height:800px;background: silver;
+    min-height: calc(100vh - 98px);
+    height:auto;
+}
+
 
 .cardsContainer{
     height: 100%;  

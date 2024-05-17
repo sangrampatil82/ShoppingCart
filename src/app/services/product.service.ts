@@ -10,8 +10,7 @@ import { Trends } from '../interfaces/trends';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-  
+export class ProductService { 
   constructor(private http: HttpClient,private loadingService:LoadingService) { }
 
   getAllProducts(): Observable<ProductObject>{
